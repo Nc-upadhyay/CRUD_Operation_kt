@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CrudOpertion_kt</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">delete blank fragment</string>
+    <string name="title">Insert Data</string>
+    <string name="insert_data">Update Data</string>
+    <string name="update">Update</string>
+</resources>

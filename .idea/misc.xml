@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Bhuvi/AndroidStudioProjects/Kotlin/CrudOpertion_kt/app/src/main/res/drawable/edit_bk.xml" value="0.16296296296296298" />
+        <entry key="..\:/Users/Bhuvi/AndroidStudioProjects/Kotlin/CrudOpertion_kt/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/Bhuvi/AndroidStudioProjects/Kotlin/CrudOpertion_kt/app/src/main/res/layout/activity_update.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Bhuvi/AndroidStudioProjects/Kotlin/CrudOpertion_kt/app/src/main/res/layout/design.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Bhuvi/AndroidStudioProjects/Kotlin/CrudOpertion_kt/app/src/main/res/layout/fragment_delete_.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Bhuvi/AndroidStudioProjects/Kotlin/CrudOpertion_kt/app/src/main/res/layout/fragment_show_.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Bhuvi/AndroidStudioProjects/Kotlin/CrudOpertion_kt/app/src/main/res/layout/fragment_update_.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/Bhuvi/AndroidStudioProjects/Kotlin/CrudOpertion_kt/app/src/main/res/menu/item.xml" value="0.20416666666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

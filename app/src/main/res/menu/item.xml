@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Home"
+        />
+    <item
+        android:id="@+id/show"
+        android:icon="@drawable/ic_baseline_slideshow_24"
+        android:title="Show"
+        />
+    <item
+        android:id="@+id/delete"
+        android:icon="@drawable/ic_baseline_delete_24"
+        android:title="Delete"
+        />
+    <item
+        android:id="@+id/update"
+        android:title="Updata"
+        android:icon="@drawable/ic_baseline_system_update_24"
+        />
+</menu>

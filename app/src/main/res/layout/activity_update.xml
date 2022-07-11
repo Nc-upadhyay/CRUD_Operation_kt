@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relative_layout"
+    tools:context=".Update">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/insert_data"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/edit_f_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:hint="Name "
+        android:textSize="20sp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edit_bk"
+
+
+        />
+
+    <EditText
+        android:id="@+id/edit_f_pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_f_name"
+        android:layout_marginTop="15dp"
+        android:hint="Password "
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:background="@drawable/edit_bk"
+        />
+
+    <EditText
+        android:id="@+id/edit_f_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_f_pass"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edit_bk"
+        android:hint="Phone "
+        android:inputType="phone"
+        android:textSize="20sp" />
+    <EditText
+        android:id="@+id/edit_f_note"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_f_phone"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/edit_bk"
+        android:hint="Note "
+        android:textSize="20sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/submint_f_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/edit_f_note"
+            android:layout_marginTop="15dp"
+            android:text="@string/update"
+            android:textAlignment="center"
+            android:textAllCaps="false"
+
+            android:textSize="20sp" />
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/naviagtion_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:menu="@menu/item"
+
+        />
+    </RelativeLayout>
+</RelativeLayout>
