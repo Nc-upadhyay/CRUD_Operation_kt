@@ -1,19 +1,20 @@
 package com.nc.crudopertion_kt
 
-import android.content.Intent
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.microsoft.appcenter.AppCenter
+import com.microsoft.appcenter.analytics.Analytics
+import com.microsoft.appcenter.crashes.Crashes
 import com.nc.crudopertion_kt.Model.Pojo
 import com.nc.crudopertion_kt.database.DBHelper
 import com.nc.crudopertion_kt.fragments.show_Frag
-import java.lang.Integer.parseInt
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,6 +31,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        AppCenter.start(
+            application, "{Your app secret here}",
+            Analytics::class.java, Crashes::class.java
+        )
         buttom_nav = findViewById(R.id.naviagtion_bar);
         name = findViewById(R.id.edittext_name)
         pass = findViewById(R.id.edittext_pass)
