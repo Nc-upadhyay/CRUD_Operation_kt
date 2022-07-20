@@ -1,63 +1,58 @@
-name: Android Build & Deploy
- 
+name: Build and Release
+
 on:
- workflow_dispatch:
- 
+ push:
+   branches:
+     - master
+   tags:
+     - "v*"
+
 jobs:
- deploy:
+ apk:
+   name: Generate APK
    runs-on: ubuntu-latest
    steps:
-   - uses: actions/checkout@v2
- 
-   - name: Set up ruby env
-     uses: ruby/setup-ruby@v1
-     with:
-       ruby-version: 2.7.2
-       bundler-cache: true
- 
-   - name: Run tests
-     run: bundle exec fastlane android test
- 
-   - name: Decode Service Account Key JSON File
-     uses: timheuer/base64-to-file@v1
-     id: service_account_json_file
-     with:
-       fileName: "serviceAccount.json"
-       encodedString: ${{ secrets.GPLAY_SERVICE_ACCOUNT_KEY_JSON }}
- 
-   - name: Decode Keystore File
-     uses: timheuer/base64-to-file@v1
-     id: android_keystore
-     with:
-       fileName: "android_keystore.keystore"
-       encodedString: ${{ secrets.KEYSTORE_FILE }}
- 
-   - name: Define version code with offset
-     env:
-         RUN_NUMBER: ${{ github.run_number }}
-         INITIAL_VERSION_CODE: 73
-     run: |
-         VERSION_CODE=$((INITIAL_VERSION_CODE + RUN_NUMBER))
-         echo "version_code=$VERSION_CODE" >> $GITHUB_ENV
- 
-   - name: Update version code
-     uses: chkfung/android-version-actions@v1.1
-     with:
-       gradlePath: android/app/build.gradle
-       versionCode: ${{ env.version_code }}
- 
-   - name: Build & deploy Android release
-     run: bundle exec fastlane android deploy
-     env:
-       KEYSTORE_FILE: ${{ steps.android_keystore.outputs.filePath }}
-       STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
-       KEY_ALIAS: ${{ secrets.KEY_ALIAS}}
-       KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
-       ANDROID_JSON_KEY_FILE: ${{ steps.service_account_json_file.outputs.filePath }}
- 
-   - name: Upload build artifacts
-     uses: actions/upload-artifact@v2
-     with:
-       name: assets
-       path: |
-         ${{ github.workspace }}/app/build/outputs/bundle/release
+     - name: Checkout
+       uses: actions/checkout@v2.4.0
+     - name: Setup JDK
+       uses: actions/setup-java@v2.5.0
+       with:
+         distribution: temurin
+         java-version: "11"
+     - name: Set execution flag for gradlew
+       run: chmod +x gradlew
+     - name: Build APK
+       run: bash ./gradlew assembleDebug --stacktrace
+     - name: Upload APK
+       uses: actions/upload-artifact@v1
+       with:
+         name: apk
+         path: app/build/outputs/apk/debug/app-debug.apk
+
+ release:
+   name: Release APK
+   needs: apk
+   runs-on: ubuntu-latest
+   steps:
+     - name: Download APK from build
+       uses: actions/download-artifact@v1
+       with:
+         name: apk
+     - name: Create Release
+       id: create_release
+       uses: actions/create-release@v1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       with:
+         tag_name: ${{ github.run_number }}
+         release_name: ${{ github.event.repository.name }} v${{ github.run_number }}
+     - name: Upload Release APK
+       id: upload_release_asset
+       uses: actions/upload-release-asset@v1.0.1
+       env:
+         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+       with:
+         upload_url: ${{ steps.create_release.outputs.upload_url }}
+         asset_path: apk/app-debug.apk
+         asset_name: ${{ github.event.repository.name }}.apk
+         asset_content_type: application/zip
